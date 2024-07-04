@@ -1,55 +1,26 @@
-<h1 align="center">Hexagonal Architecture Typescript Service Skeleton</h1>
+# Housely
 
-<p align="center">
-  Skeleton for new typescript services based on hexagonal architecture
-</p>
+## Project
 
-<p align="center">
-    <a href="https://github.com/AlbertHernandez/hexagonal-architecture-typescript-service-skeleton/actions/workflows/nodejs.yml?branch=main"><img src="https://github.com/AlbertHernandez/hexagonal-architecture-typescript-service-skeleton/actions/workflows/nodejs.yml/badge.svg?branch=main" alt="nodejs"/></a>
-</p>
+* **Description:**
+  `Bakcend for housely app.
 
-## Table of Contents
+* **Development Tools:**
+    - Node.js
+    - Express.js
+    - TypeScript
+    - TypeDi >> DI simplistic dependency injection
 
-* [Installing](#installing)
-* [Building](#building)
-* [Testing](#testing)
-* [Linting](#linting)
+## Backend Structure
 
-## Installing
+* **Controllers:**
+  This is where the request handlers are located. They receive an HTTP request and provide the HTTP response.
 
-```bash
-nvm install 18.0.0
-nvm use
-npm install npm@8.3.0 -g
-npm install
-```
+* **Gateways:**
+  Contains `<gateway-name>`, this layer is responsible for communicating with external services.
 
-## Building
+* **Services:**
+  Contains `<service-name>`, external dependencies like bcrypt or jsonwebtoken or twilio if a library is vulnerable or dependency only will affect this layer not the entire app 
 
-```bash
-npm run build
-```
-
-## Testing
-
-### Jest with Testing Library
-
-```bash
-npm run test
-```
-
-## Linting
-
-Run the linter
-
-```bash
-npm run lint
-```
-
-Fix lint issues automatically
-
-```bash
-npm run lint:fix
-```
-
-![Alt text](image.png)
+* **Repositories:**
+  Contains `<repository-name>`, in charge of data manipulation and storage with mongo using mongoose as external dependency.
