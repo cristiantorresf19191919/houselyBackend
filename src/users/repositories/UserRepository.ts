@@ -1,5 +1,5 @@
 import { Service } from 'typedi'
-import UserModel, { User } from '../db/models/user'
+import UserEntity, { User } from '../../db/Entities/User'
 
 
 @Service()
@@ -9,11 +9,11 @@ export class UserRepository {
   constructor() {}
 
   async save(partner: User): Promise<User> {
-    const newUser = new UserModel(partner)
+    const newUser = new UserEntity(partner)
     return newUser.save()
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return UserModel.findOne({ email })
+    return UserEntity.findOne({ email })
   }
 }

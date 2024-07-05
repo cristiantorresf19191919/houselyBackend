@@ -1,12 +1,12 @@
 import { Service } from 'typedi'
-import { TokenService } from '../services/TokenService'
-import { HashService } from '../services/HashService'
+import { TokenService } from '../externalServices/TokenService'
+import { HashService } from '../externalServices/HashService'
 import { UserRepository } from '../repositories/UserRepository'
-import { User } from '../db/models/user'
+import { User } from '../../db/Entities/User'
 
 
 @Service()
-export class AuthenticationGateway {
+export class AuthenticationUseCase {
   constructor(
     private tokenService: TokenService,
     private hashService: HashService,

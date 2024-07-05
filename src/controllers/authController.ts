@@ -1,9 +1,9 @@
 import express from 'express'
 import Container from 'typedi'
-import {AuthenticationGateway} from '../gateways/AuthenticationGateway'
+import {AuthenticationUseCase} from '../users/application/AuthenticationUseCase'
 
 const router = express.Router()
-const authenticationGateway = Container.get(AuthenticationGateway)
+const authenticationGateway = Container.get(AuthenticationUseCase)
 
 router.get('/login', async (req, res) => {
   const {email, password} = req.body

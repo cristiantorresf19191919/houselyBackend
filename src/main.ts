@@ -6,7 +6,7 @@ import { json } from 'body-parser'
 import mongoose, { ConnectOptions } from 'mongoose'
 import * as dotenv from 'dotenv'
 import { Container } from 'typedi'
-import UserModel from './db/models/user'
+import UserEntity from './db/Entities/User'
 
 dotenv.config()
 
@@ -14,7 +14,7 @@ dotenv.config()
 function addDependencies() {
   // Adding mongo dependency to the IoC container
   console.log('📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕Registering partern Model dependency')
-  Container.set('PartnerModel', UserModel)
+  Container.set('PartnerModel', UserEntity)
 }
 
 async function createServer() {
