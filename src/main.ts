@@ -8,6 +8,7 @@ import * as dotenv from 'dotenv'
 import { Container } from 'typedi'
 import UserEntity from './db/Entities/User'
 
+
 dotenv.config()
 
 
@@ -25,16 +26,15 @@ async function createServer() {
   const port = process.env.PORT || 4400
   app.listen({ port }, () => {
     console.log(`🚀 Server ready at http://localhost:${port}/api`)
-    console.log(`🚀 GraphQl Server ready at http://localhost:${port}/graphql`)
   })
 }
 
 async function connectLocally() {
-  const dbName = 'planemerg' // solo cambiar este string si se requiere cambiar base de datos
+  const dbName = 'houselyDatabase' // solo cambiar este string si se requiere cambiar base de datos
   const connectionString = `mongodb://localhost:27017/${dbName}`
   try {
     await mongoose.connect(connectionString)
-    console.log('💾 Conectado a la base de datos EXITOSAMENTE ')
+    console.log('💾 Conectado a la base de datos EXITOSAMENTE 🥵🥵🥵🍆🍆🍆 ')
   } catch (error:any) {
     console.error('Error connecting to MongoDB:', error.message)
     throw new Error('Unable to connect to DB')
@@ -50,7 +50,7 @@ async function connectMongoDB(): Promise<void> {
   }
   const password = process.env.DB_PASSWORD
   const mongoHost = process.env.DB_HOST
-  const connectionString = `mongodb+srv://${username}:${password}@${mongoHost}/SAGNIRIB`
+  const connectionString = `mongodb+srv://${username}:${password}@${mongoHost}/HouseLy`
   const configuration: ConnectOptions = {
     authMechanism: 'DEFAULT',
     authSource: 'admin'

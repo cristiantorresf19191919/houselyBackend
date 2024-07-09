@@ -16,4 +16,8 @@ export class UserRepository {
   async findByEmail(email: string): Promise<User | null> {
     return UserEntity.findOne({ email })
   }
+
+  async findOneBy(searchCriteria:Partial<User>) {
+    return UserEntity.findOne(searchCriteria)
+  }
 }
