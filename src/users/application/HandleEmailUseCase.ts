@@ -1,8 +1,8 @@
 import { Service } from 'typedi'
-import { EmailDetails, SendEmailService } from '../services/SendEmailService'
+import { EmailDetails, SendEmailService } from '../externalServices/SendEmailService'
 
 @Service()
-export class EmailGateway {
+export class HandleEmailUseCase {
 
   // tslint:disable-next-line:no-empty
   constructor(private sendEmailService: SendEmailService) {

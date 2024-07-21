@@ -6,7 +6,8 @@ import { json } from 'body-parser'
 import mongoose, { ConnectOptions } from 'mongoose'
 import * as dotenv from 'dotenv'
 import { Container } from 'typedi'
-import UserModel from './db/models/user'
+import UserEntity from './db/Entities/User'
+
 
 dotenv.config()
 
@@ -14,7 +15,7 @@ dotenv.config()
 function addDependencies() {
   // Adding mongo dependency to the IoC container
   console.log('📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕Registering partern Model dependency')
-  Container.set('PartnerModel', UserModel)
+  Container.set('PartnerModel', UserEntity)
 }
 
 async function createServer() {
@@ -25,15 +26,31 @@ async function createServer() {
   const port = process.env.PORT || 4400
   app.listen({ port }, () => {
     console.log(`🚀 Server ready at http://localhost:${port}/api`)
-    console.log(`🚀 GraphQl Server ready at http://localhost:${port}/graphql`)
   })
+}
+
+async function connectLocally() {
+  const dbName = 'houselyDatabase' // solo cambiar este string si se requiere cambiar base de datos
+  const connectionString = `mongodb://localhost:27017/${dbName}`
+  try {
+    await mongoose.connect(connectionString)
+    console.log('💾 Conectado a la base de datos EXITOSAMENTE 🥵🥵🥵🍆🍆🍆 ')
+  } catch (error:any) {
+    console.error('Error connecting to MongoDB:', error.message)
+    throw new Error('Unable to connect to DB')
+  }
 }
 
 async function connectMongoDB(): Promise<void> {
   const username = process.env.DB_USERNAME
+  if (!username) {
+    console.log(' intentando conectarse localmente a la bae de datos >>')
+    await connectLocally()
+    return
+  }
   const password = process.env.DB_PASSWORD
   const mongoHost = process.env.DB_HOST
-  const connectionString = `mongodb+srv://${username}:${password}@${mongoHost}/SAGNIRIB`
+  const connectionString = `mongodb+srv://${username}:${password}@${mongoHost}/HouseLy`
   const configuration: ConnectOptions = {
     authMechanism: 'DEFAULT',
     authSource: 'admin'

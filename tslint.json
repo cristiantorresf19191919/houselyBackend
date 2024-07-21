@@ -12,6 +12,7 @@
       true,
       "never"
     ],
+    "no-implicit-any": false,
     "no-console": false
   },
   "linterOptions": {
